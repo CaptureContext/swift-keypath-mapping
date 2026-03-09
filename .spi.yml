@@ -1,0 +1,21 @@
+version: 1
+builder:
+  configs:
+  - platform: ios
+  - platform: macos-spm
+  - platform: macos-xcodebuild
+  - platform: tvos
+  - platform: watchos
+  - platform: android
+
+  - platform: linux
+    swift_version: '5.9'
+
+  - platform: linux
+    swift_version: '6.0'
+
+  - platform: linux
+    swift_version: '6.1'
+
+  - documentation_targets:
+    - KeyPathMapping

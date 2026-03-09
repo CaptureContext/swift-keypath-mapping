@@ -1,0 +1,6 @@
+.DS_Store
+.netrc
+.build/
+xcuserdata/
+DerivedData/
+Package.resolved
