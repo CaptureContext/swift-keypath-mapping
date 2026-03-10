@@ -265,6 +265,10 @@ The package also ships with a focused set of predefined conversions:
 .unwrapped(with: <#defaultValue#>, aggressive: <#Bool#> = false)
 ```
 
+> [!Note]
+>
+> _Swift only allows aggressive replacements for value types_
+
 #### BinaryNumeric
 
 ```swift
