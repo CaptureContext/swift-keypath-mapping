@@ -297,7 +297,7 @@ If you use SwiftPM for your project structure, add `swift-keypath-mapping` depen
 ```swift
 .package(
   url: "https://github.com/capturecontext/swift-keypath-mapping.git",
-  .upToNextMinor(from: "0.0.1"),
+  .upToNextMinor(from: "0.0.2"),
   traits: ["PredefinedConversions"] // optional
 )
 ```
