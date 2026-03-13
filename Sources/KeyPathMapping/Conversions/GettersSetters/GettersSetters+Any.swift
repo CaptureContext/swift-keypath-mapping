@@ -270,7 +270,7 @@ extension _MutatingSetters.AnySetter where Root == Member {
 	@inlinable
 	public static func onWillSet(
 		id: (any Hashable) = ObjectIdentifier(Self.self),
-		operation: @escaping (Member) -> Void
+		perform operation: @escaping (Member) -> Void
 	) -> Self {
 		return .inline(id: id) {
 			operation($1)
@@ -287,7 +287,7 @@ extension _MutatingSetters.AnySetter where Root == Member {
 	@inlinable
 	public static func onWillSet(
 		id: (any Hashable) = ObjectIdentifier(Self.self),
-		operation: @escaping (Root, Member) -> Void
+		perform operation: @escaping (Root, Member) -> Void
 	) -> Self {
 		return .inline(id: id) {
 			operation($0, $1)
