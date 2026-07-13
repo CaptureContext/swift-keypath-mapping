@@ -1,5 +1,6 @@
 import Foundation
 import SwiftMarkerProtocols
+import KeyPathMappingCore
 
 // MARK: - Convert to optional
 
@@ -68,7 +69,7 @@ extension KeyPathMapper.Getter where Root: _OptionalProtocol, Member == Root.Wra
 	/// - Returns: A getter that unwraps the optional root.
 	@inlinable
 	public static func unwrappedWith(
-		_ defaultValue: @escaping @autoclosure () -> Root.Wrapped,
+		_ defaultValue: @escaping @autoclosure () -> Member,
 	) -> Self {
 		.inline { $0._optional ?? defaultValue() }
 	}
@@ -116,12 +117,79 @@ extension KeyPathMapper.MutatingConversionTo where Root: _OptionalProtocol, Memb
 	/// - Returns: A conversion between an optional root and its wrapped value.
 	@inlinable
 	public static func unwrapped(
-		with defaultValue: @escaping @autoclosure () -> Root.Wrapped,
+		with defaultValue: @escaping @autoclosure () -> Member,
 		aggressive: Bool = false
 	) -> Self {
 		return .init(
 			getter: .unwrappedWith(defaultValue()),
 			setter: .aggressive(aggressive)
+		)
+	}
+}
+
+// MARK: - OptionalMap
+
+extension KeyPathMapper.Getter where Root: _OptionalProtocol {
+	@inlinable
+	public static func optionalMap<Value>(
+		_ keyPath: KeyPath<Root.Wrapped, Value>
+	) -> Self where
+		Member == Optional<Value>
+	{
+		return .inline { $0._optional?[keyPath: keyPath] }
+	}
+}
+
+extension KeyPathMapper.MutatingSetter where Root: _OptionalProtocol {
+	@inlinable
+	public static func optionalMap<Value>(
+		_ keyPath: WritableKeyPath<Root.Wrapped, Value>,
+		aggressive: Bool = false
+	) -> Self where Member == Optional<Value> {
+		return .inline {
+			if let value = $1 {
+				$0._optional?[keyPath: keyPath] = value
+			} else if aggressive {
+				$0._optional = nil
+			}
+		}
+	}
+}
+
+extension KeyPathMapper.NonMutatingSetter where Root: _OptionalProtocol {
+	@inlinable
+	public static func optionalMap<Value>(
+		_ keyPath: ReferenceWritableKeyPath<Root.Wrapped, Value>
+	) -> Self where Member == Optional<Value> {
+		return .inline {
+			if let value = $1 {
+				$0._optional?[keyPath: keyPath] = value
+			}
+		}
+	}
+}
+
+extension KeyPathMapper.MutatingConversionTo where Root: _OptionalProtocol {
+	@inlinable
+	public static func optionalMap<Value>(
+		_ keyPath: WritableKeyPath<Root.Wrapped, Value>,
+		aggressive: Bool = false
+	) -> Self where Member == Optional<Value>	{
+		return .init(
+			getter: .optionalMap(keyPath),
+			setter: .optionalMap(keyPath, aggressive: aggressive)
+		)
+	}
+}
+
+extension KeyPathMapper.NonMutatingConversionTo where Root: _OptionalProtocol {
+	@inlinable
+	public static func optionalMap<Value>(
+		_ keyPath: ReferenceWritableKeyPath<Root.Wrapped, Value>
+	) -> Self where Member == Optional<Value>	{
+		return .init(
+			getter: .optionalMap(keyPath),
+			setter: .optionalMap(keyPath)
 		)
 	}
 }

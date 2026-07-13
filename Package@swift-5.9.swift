@@ -20,10 +20,23 @@ let package = Package(
 		.target(
 			name: "KeyPathMapping",
 			dependencies: [
+				.target(name: "KeyPathMappingCore"),
+				.target(name: "KeyPathMappingPredefinedConversions"),
+			]
+		),
+		.target(
+			name: "KeyPathMappingCore",
+			dependencies: [
 				.product(
 					name: "SwiftMarkerProtocols",
 					package: "swift-marker-protocols"
-				)
+				),
+			]
+		),
+		.target(
+			name: "KeyPathMappingPredefinedConversions",
+			dependencies: [
+				.target(name: "KeyPathMappingCore"),
 			]
 		),
 		.testTarget(

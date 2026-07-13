@@ -1,4 +1,5 @@
-#if swift(<6.1) || PredefinedConversions
+import KeyPathMappingCore
+
 extension _MutatingConversions.AnyConversion
 where Root: BinaryFloatingPoint {
 	/// Converts between floating-point numeric types.
@@ -63,4 +64,3 @@ where Root: BinaryInteger {
 		)
 	}
 }
-#endif

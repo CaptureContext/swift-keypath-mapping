@@ -1,5 +1,5 @@
-#if swift(<6.1) || PredefinedConversions
 import Foundation
+import KeyPathMappingCore
 
 extension KeyPathMapper.Getter where Root: Collection {
 	/// Reads an element at an index without bounds checking.
@@ -154,4 +154,3 @@ extension KeyPathMapper.MutatingConversionTo where Root: MutableCollection {
 		)
 	}
 }
-#endif
