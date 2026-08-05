@@ -1,0 +1,1280 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-macosx10.13 -enable-objc-interop -swift-version 6 -O -module-name KeyPathMapping -package-name swift_keypath_mapping
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+import Foundation
+import Swift
+import SwiftMarkerProtocols
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension KeyPathMapping._ReadonlyConversions {
+  public struct AnyConversion<Root, Member> : KeyPathMapping._ReadonlyConversions.ConversionProtocol {
+    @inlinable public static func == (lhs: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member>, rhs: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._ReadonlyConversions.ConversionProtocol<Root, Member>
+    @inlinable public init(getter: KeyPathMapping._Getters.AnyGetter<Root, Member>) {
+			self.init(Conversion(getter: getter))
+		}
+    public init(_ underlying: any KeyPathMapping._ReadonlyConversions.ConversionProtocol<Root, Member>)
+    @inlinable public func extract(from root: Root) -> Member {
+			underlying.extract(from: root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingConversions {
+  public struct AnyConversion<Root, Member> : KeyPathMapping._MutatingConversions.ConversionProtocol {
+    @inlinable public static func == (lhs: KeyPathMapping._MutatingConversions.AnyConversion<Root, Member>, rhs: KeyPathMapping._MutatingConversions.AnyConversion<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._MutatingConversions.ConversionProtocol<Root, Member>
+    @inlinable public init(getter: KeyPathMapping._Getters.AnyGetter<Root, Member>, setter: KeyPathMapping._MutatingSetters.AnySetter<Root, Member>) {
+			self.init(Conversion(
+				getter: getter,
+				setter: setter
+			))
+		}
+    public init(_ underlying: any KeyPathMapping._MutatingConversions.ConversionProtocol<Root, Member>)
+    @inlinable public func extract(from root: Root) -> Member {
+			underlying.extract(from: root)
+		}
+    @inlinable public func embed(_ member: Member, in root: inout Root) {
+			underlying.embed(member, in: &root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingConversions {
+  public struct AnyConversion<Root, Member> : KeyPathMapping._NonMutatingConversions.ConversionProtocol {
+    @inlinable public static func == (lhs: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member>, rhs: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._NonMutatingConversions.ConversionProtocol<Root, Member>
+    @inlinable public init(getter: KeyPathMapping._Getters.AnyGetter<Root, Member>, setter: KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member>) {
+			self.init(Conversion(
+				getter: getter,
+				setter: setter
+			))
+		}
+    public init(_ underlying: any KeyPathMapping._NonMutatingConversions.ConversionProtocol<Root, Member>)
+    @inlinable public func extract(from root: Root) -> Member {
+			underlying.extract(from: root)
+		}
+    @inlinable public func embed(_ member: Member, in root: Root) {
+			underlying.embed(member, in: root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._ReadonlyConversions.AnyConversion {
+  @inlinable public static func readonly(_ conversion: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		return conversion
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion {
+  @inlinable public static func mutating(_ conversion: KeyPathMapping._MutatingConversions.AnyConversion<Root, Member>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		return conversion
+	}
+}
+extension KeyPathMapping._NonMutatingConversions.AnyConversion {
+  @inlinable public static func nonmutating(_ conversion: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		return conversion
+	}
+}
+extension KeyPathMapping._ReadonlyConversions.AnyConversion {
+  @inlinable public static func inline(extract: @escaping (Root) -> Member) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: extract)
+		)
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion {
+  @inlinable public static func inline(extract: @escaping (Root) -> Member, embed: @escaping (inout Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: extract),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion {
+  @inlinable public static func inline(extract: @escaping (Root) -> Member, embed: @escaping (Member) -> Root) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: extract),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._NonMutatingConversions.AnyConversion {
+  @inlinable public static func inline(extract: @escaping (Root) -> Member, embed: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: extract),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root == Member {
+  @inlinable public static func inline(embed: @escaping (inout Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: \.self),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root == Member {
+  @inlinable public static func inline(embed: @escaping (Member) -> Root) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: \.self),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._NonMutatingConversions.AnyConversion where Root == Member {
+  @inlinable public static func inline(embed: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		.init(
+			getter: .inline(extract: \.self),
+			setter: .inline(embed: embed)
+		)
+	}
+}
+extension KeyPathMapping._ReadonlyConversions {
+  public struct Concat<First, Second> : KeyPathMapping._ReadonlyConversions.ConversionProtocol where First : KeyPathMapping._ReadonlyConversions.ConversionProtocol, Second : KeyPathMapping._ReadonlyConversions.ConversionProtocol, First.Member == Second.Root {
+    public typealias Root = First.Root
+    public typealias Member = Second.Member
+    @usableFromInline
+    internal let first: First
+    @usableFromInline
+    internal let second: Second
+    public init(_ first: First, _ second: Second)
+    @inlinable public func extract(from root: KeyPathMapping._ReadonlyConversions.Concat<First, Second>.Root) -> KeyPathMapping._ReadonlyConversions.Concat<First, Second>.Member {
+			second.extract(from: first.extract(from: root))
+		}
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._ReadonlyConversions.Concat<First, Second>, _ b: KeyPathMapping._ReadonlyConversions.Concat<First, Second>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._ReadonlyConversions.AnyConversion {
+  @inlinable public func appending<T>(_ other: KeyPathMapping._ReadonlyConversions.AnyConversion<Member, T>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, T> {
+		return .init(_ReadonlyConversions.Concat(
+			self,
+			other
+		))
+	}
+}
+extension KeyPathMapping._ReadonlyConversions.AnyConversion {
+  @inlinable public static func concat<T0>(_ c0: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._ReadonlyConversions.AnyConversion<T0, Member>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+	}
+  @inlinable public static func concat<T0, T1>(_ c0: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._ReadonlyConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._ReadonlyConversions.AnyConversion<T1, Member>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+	}
+  @inlinable public static func concat<T0, T1, T2>(_ c0: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._ReadonlyConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._ReadonlyConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._ReadonlyConversions.AnyConversion<T2, Member>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+	}
+  @inlinable public static func concat<T0, T1, T2, T3>(_ c0: KeyPathMapping._ReadonlyConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._ReadonlyConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._ReadonlyConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._ReadonlyConversions.AnyConversion<T2, T3>, _ c4: KeyPathMapping._ReadonlyConversions.AnyConversion<T3, Member>) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+			.appending(c4)
+	}
+}
+extension KeyPathMapping._MutatingConversions {
+  public struct Concat<First, Second> : KeyPathMapping._MutatingConversions.ConversionProtocol where First : KeyPathMapping._MutatingConversions.ConversionProtocol, Second : KeyPathMapping._MutatingConversions.ConversionProtocol, First.Member == Second.Root {
+    public typealias Root = First.Root
+    public typealias Member = Second.Member
+    @usableFromInline
+    internal let first: First
+    @usableFromInline
+    internal let second: Second
+    public init(_ first: First, _ second: Second)
+    @inlinable public func extract(from root: KeyPathMapping._MutatingConversions.Concat<First, Second>.Root) -> KeyPathMapping._MutatingConversions.Concat<First, Second>.Member {
+			second.extract(from: first.extract(from: root))
+		}
+    @inlinable public func embed(_ member: KeyPathMapping._MutatingConversions.Concat<First, Second>.Member, in root: inout KeyPathMapping._MutatingConversions.Concat<First, Second>.Root) {
+			var intermediateRoot: First.Member = first.extract(from: root)
+			second.embed(member, in: &intermediateRoot)
+			first.embed(intermediateRoot, in: &root)
+		}
+    @usableFromInline
+    internal func embed(_ member: Second.Member, in root: inout Second.Root)
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._MutatingConversions.Concat<First, Second>, _ b: KeyPathMapping._MutatingConversions.Concat<First, Second>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion {
+  @inlinable public func appending<T>(_ other: KeyPathMapping._MutatingConversions.AnyConversion<Member, T>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, T> {
+		return .init(_MutatingConversions.Concat(
+			self,
+			other
+		))
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion {
+  @inlinable public static func concat<T0>(_ c0: KeyPathMapping._MutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._MutatingConversions.AnyConversion<T0, Member>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+	}
+  @inlinable public static func concat<T0, T1>(_ c0: KeyPathMapping._MutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._MutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._MutatingConversions.AnyConversion<T1, Member>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+	}
+  @inlinable public static func concat<T0, T1, T2>(_ c0: KeyPathMapping._MutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._MutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._MutatingConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._MutatingConversions.AnyConversion<T2, Member>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+	}
+  @inlinable public static func concat<T0, T1, T2, T3>(_ c0: KeyPathMapping._MutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._MutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._MutatingConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._MutatingConversions.AnyConversion<T2, T3>, _ c4: KeyPathMapping._MutatingConversions.AnyConversion<T3, Member>) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+			.appending(c4)
+	}
+}
+extension KeyPathMapping._NonMutatingConversions {
+  public struct Concat<First, Second> : KeyPathMapping._NonMutatingConversions.ConversionProtocol where First : KeyPathMapping._NonMutatingConversions.ConversionProtocol, Second : KeyPathMapping._NonMutatingConversions.ConversionProtocol, First.Member == Second.Root {
+    public typealias Root = First.Root
+    public typealias Member = Second.Member
+    @usableFromInline
+    internal let first: First
+    @usableFromInline
+    internal let second: Second
+    public init(_ first: First, _ second: Second)
+    @inlinable public func extract(from root: KeyPathMapping._NonMutatingConversions.Concat<First, Second>.Root) -> KeyPathMapping._NonMutatingConversions.Concat<First, Second>.Member {
+			second.extract(from: first.extract(from: root))
+		}
+    @inlinable public func embed(_ member: KeyPathMapping._NonMutatingConversions.Concat<First, Second>.Member, in root: KeyPathMapping._NonMutatingConversions.Concat<First, Second>.Root) {
+			let intermediateRoot: First.Member = first.extract(from: root)
+			second.embed(member, in: intermediateRoot)
+			first.embed(intermediateRoot, in: root)
+		}
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._NonMutatingConversions.Concat<First, Second>, _ b: KeyPathMapping._NonMutatingConversions.Concat<First, Second>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingConversions.AnyConversion {
+  @inlinable public func appending<T>(_ other: KeyPathMapping._NonMutatingConversions.AnyConversion<Member, T>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, T> {
+		return .init(_NonMutatingConversions.Concat(
+			self,
+			other
+		))
+	}
+}
+extension KeyPathMapping._NonMutatingConversions.AnyConversion {
+  @inlinable public static func concat<T0>(_ c0: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._NonMutatingConversions.AnyConversion<T0, Member>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+	}
+  @inlinable public static func concat<T0, T1>(_ c0: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._NonMutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._NonMutatingConversions.AnyConversion<T1, Member>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+	}
+  @inlinable public static func concat<T0, T1, T2>(_ c0: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._NonMutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._NonMutatingConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._NonMutatingConversions.AnyConversion<T2, Member>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+	}
+  @inlinable public static func concat<T0, T1, T2, T3>(_ c0: KeyPathMapping._NonMutatingConversions.AnyConversion<Root, T0>, _ c1: KeyPathMapping._NonMutatingConversions.AnyConversion<T0, T1>, _ c2: KeyPathMapping._NonMutatingConversions.AnyConversion<T1, T2>, _ c3: KeyPathMapping._NonMutatingConversions.AnyConversion<T2, T3>, _ c4: KeyPathMapping._NonMutatingConversions.AnyConversion<T3, Member>) -> KeyPathMapping._NonMutatingConversions.AnyConversion<Root, Member> {
+		c0
+			.appending(c1)
+			.appending(c2)
+			.appending(c3)
+			.appending(c4)
+	}
+}
+public enum _ReadonlyConversions {
+}
+public enum _MutatingConversions {
+}
+public enum _NonMutatingConversions {
+}
+extension KeyPathMapping._ReadonlyConversions {
+  public protocol ConversionProtocol<Root, Member> : KeyPathMapping._Getters.Getter {
+    associatedtype Root
+    associatedtype Member
+  }
+}
+extension KeyPathMapping._MutatingConversions {
+  public protocol ConversionProtocol<Root, Member> : KeyPathMapping._Getters.Getter, KeyPathMapping._MutatingSetters.Setter {
+    associatedtype Root
+    associatedtype Member
+  }
+}
+extension KeyPathMapping._NonMutatingConversions {
+  public protocol ConversionProtocol<Root, Member> : KeyPathMapping._Getters.Getter, KeyPathMapping._NonMutatingSetters.Setter {
+    associatedtype Root
+    associatedtype Member
+  }
+}
+extension KeyPathMapping._ReadonlyConversions {
+  public struct Conversion<Getter> : KeyPathMapping._ReadonlyConversions.ConversionProtocol where Getter : KeyPathMapping._Getters.Getter {
+    public typealias Root = Getter.Root
+    public typealias Member = Getter.Member
+    @usableFromInline
+    internal var getter: Getter
+    public init(getter: Getter)
+    @inlinable public func extract(from root: KeyPathMapping._ReadonlyConversions.Conversion<Getter>.Root) -> KeyPathMapping._ReadonlyConversions.Conversion<Getter>.Member {
+			getter.extract(from: root)
+		}
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._ReadonlyConversions.Conversion<Getter>, _ b: KeyPathMapping._ReadonlyConversions.Conversion<Getter>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingConversions {
+  public struct Conversion<Getter, Setter> : KeyPathMapping._MutatingConversions.ConversionProtocol where Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._MutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    public typealias Root = Getter.Root
+    public typealias Member = Getter.Member
+    @usableFromInline
+    internal var getter: Getter
+    @usableFromInline
+    internal var setter: Setter
+    public init(getter: Getter, setter: Setter)
+    @inlinable public func extract(from root: KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>.Root) -> KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>.Member {
+			getter.extract(from: root)
+		}
+    @inlinable public func embed(_ member: KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>.Member, in root: inout KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>.Root) {
+			setter.embed(member, in: &root)
+		}
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>, _ b: KeyPathMapping._MutatingConversions.Conversion<Getter, Setter>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingConversions {
+  public struct Conversion<Getter, Setter> : KeyPathMapping._NonMutatingConversions.ConversionProtocol where Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._NonMutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    public typealias Root = Getter.Root
+    public typealias Member = Getter.Member
+    @usableFromInline
+    internal var getter: Getter
+    @usableFromInline
+    internal var setter: Setter
+    public init(getter: Getter, setter: Setter)
+    @inlinable public func extract(from root: KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>.Root) -> KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>.Member {
+			getter.extract(from: root)
+		}
+    @inlinable public func embed(_ member: KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>.Member, in root: KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>.Root) {
+			setter.embed(member, in: root)
+		}
+    @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>, _ b: KeyPathMapping._NonMutatingConversions.Conversion<Getter, Setter>) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension Swift.Equatable {
+  @_disfavoredOverload @inlinable public subscript<Conversion>(_map conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._ReadonlyConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._MutatingConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+    set { conversion.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._NonMutatingConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+    nonmutating set { conversion.embed(newValue, in: self) }
+  }
+}
+extension Swift.Equatable {
+  @_disfavoredOverload @inlinable public subscript<T>(map conversion: KeyPathMapping._ReadonlyConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<T>(convert conversion: KeyPathMapping._MutatingConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+    set { conversion.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<T>(convert conversion: KeyPathMapping._NonMutatingConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+    nonmutating set { conversion.embed(newValue, in: self) }
+  }
+}
+extension Swift.Equatable {
+  @_disfavoredOverload @inlinable public subscript<Getter>(_getter getter: Getter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter {
+    get { getter.extract(from: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._MutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { getter.extract(from: self) }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Setter>(_setter setter: Setter) -> Self where Self == Setter.Member, Setter : KeyPathMapping._MutatingSetters.Setter, Setter.Member == Setter.Root {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._NonMutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { getter.extract(from: self) }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<Setter>(_setter setter: Setter) -> Self where Self == Setter.Member, Setter : KeyPathMapping._NonMutatingSetters.Setter, Setter.Member == Setter.Root {
+    get { self }
+    set { setter.embed(newValue, in: self) }
+  }
+}
+extension Swift.Equatable {
+  @_disfavoredOverload @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>) -> T {
+    get { getter.extract(from: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Self>.MutatingSetter<T>) -> T {
+    get { getter.extract(from: self) }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<Self>.MutatingSetter<Self>) -> Self {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @_disfavoredOverload @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Self>.NonMutatingSetter<T>) -> T {
+    get { getter.extract(from: self) }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+  @_disfavoredOverload @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<Self>.NonMutatingSetter<Self>) -> Self {
+    get { self }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping._Getters {
+  public struct AnyGetter<Root, Member> : KeyPathMapping._Getters.Getter {
+    @inlinable public static func == (lhs: KeyPathMapping._Getters.AnyGetter<Root, Member>, rhs: KeyPathMapping._Getters.AnyGetter<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._Getters.Getter<Root, Member>
+    public init(_ underlying: any KeyPathMapping._Getters.Getter<Root, Member>)
+    @inlinable public func extract(from root: Root) -> Member {
+			underlying.extract(from: root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingSetters {
+  public struct AnySetter<Root, Member> : KeyPathMapping._MutatingSetters.Setter {
+    @inlinable public static func == (lhs: KeyPathMapping._MutatingSetters.AnySetter<Root, Member>, rhs: KeyPathMapping._MutatingSetters.AnySetter<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._MutatingSetters.Setter<Root, Member>
+    public init(_ underlying: any KeyPathMapping._MutatingSetters.Setter<Root, Member>)
+    @inlinable public func embed(_ member: Member, in root: inout Root) {
+			underlying.embed(member, in: &root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingSetters {
+  public struct AnySetter<Root, Member> : KeyPathMapping._NonMutatingSetters.Setter {
+    @inlinable public static func == (lhs: KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member>, rhs: KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member>) -> Swift.Bool {
+			lhs.underlying._swift_keypath_mapper_isEqual(to: rhs.underlying)
+		}
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._NonMutatingSetters.Setter<Root, Member>
+    public init(_ underlying: any KeyPathMapping._NonMutatingSetters.Setter<Root, Member>)
+    @inlinable public func embed(_ member: Member, in root: Root) {
+			underlying.embed(member, in: root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			underlying.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingSetters.AnySetter {
+  @usableFromInline
+  internal struct DisableMutations : KeyPathMapping._NonMutatingSetters.Setter {
+    @usableFromInline
+    internal static func == (lhs: KeyPathMapping._MutatingSetters.AnySetter<Root, Member>.DisableMutations, rhs: KeyPathMapping._MutatingSetters.AnySetter<Root, Member>.DisableMutations) -> Swift.Bool
+    @usableFromInline
+    internal let underlying: any KeyPathMapping._MutatingSetters.Setter<Root, Member>
+    @usableFromInline
+    internal init(for underlying: any KeyPathMapping._MutatingSetters.Setter<Root, Member>)
+    @usableFromInline
+    internal func embed(_ member: Member, in root: Root)
+    @usableFromInline
+    internal func hash(into hasher: inout Swift.Hasher)
+    @usableFromInline
+    internal var hashValue: Swift.Int {
+      @usableFromInline
+      get
+    }
+  }
+  @inlinable public func _withMutationsDisabled() -> KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member> {
+		.init(DisableMutations(for: underlying))
+	}
+}
+extension KeyPathMapping._Getters.Getter {
+  @inlinable public func eraseToAnyGetter() -> KeyPathMapping._Getters.AnyGetter<Self.Root, Self.Member> {
+		.init(self)
+	}
+}
+extension KeyPathMapping._MutatingSetters.Setter {
+  @inlinable public func eraseToAnyMutatingSetter() -> KeyPathMapping._MutatingSetters.AnySetter<Self.Root, Self.Member> {
+		.init(self)
+	}
+}
+extension KeyPathMapping._NonMutatingSetters.Setter {
+  @inlinable public func eraseToAnyNonMutatingSetter() -> KeyPathMapping._NonMutatingSetters.AnySetter<Self.Root, Self.Member> {
+		.init(self)
+	}
+}
+extension KeyPathMapping._Getters.AnyGetter {
+  @inlinable public static func inline(id: any Swift.Hashable = ObjectIdentifier(Self.self), extract: @escaping (Root) -> Member) -> KeyPathMapping._Getters.AnyGetter<Root, Member> {
+		.init(_Getters.Inline(id: id, extract: extract))
+	}
+}
+extension KeyPathMapping._MutatingSetters.AnySetter {
+  @inlinable public static func inline(id: any Swift.Hashable = ObjectIdentifier(Self.self), embed: @escaping (inout Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		.init(_MutatingSetters.Inline(id: id, embed: embed))
+	}
+  @inlinable public static func inline(id: any Swift.Hashable = ObjectIdentifier(Self.self), embed: @escaping (Member) -> Root) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		.inline(id: id) { $0 = embed($1) }
+	}
+}
+extension KeyPathMapping._NonMutatingSetters.AnySetter {
+  @inlinable public static func inline(id: any Swift.Hashable = ObjectIdentifier(Self.self), embed: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member> {
+		.init(_NonMutatingSetters.Inline(id: id, embed: embed))
+	}
+}
+extension KeyPathMapping._MutatingSetters.AnySetter where Root == Member {
+  @inlinable public static func perform(id: any Swift.Hashable = ObjectIdentifier(Self.self), onWillSet: ((Member) -> Swift.Void)? = nil, onDidSet: ((Member) -> Swift.Void)? = nil) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			onWillSet?($1)
+			$0 = $1
+			onDidSet?($1)
+		}
+	}
+  @inlinable public static func perform(id: any Swift.Hashable = ObjectIdentifier(Self.self), onWillSet: ((Root, Member) -> Swift.Void)? = nil, onDidSet: ((Root, Member) -> Swift.Void)? = nil) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			onWillSet?($0, $1)
+			$0 = $1
+			onDidSet?($0, $1)
+		}
+	}
+  @inlinable public static func onWillSet(id: any Swift.Hashable = ObjectIdentifier(Self.self), perform operation: @escaping (Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			operation($1)
+			$0 = $1
+		}
+	}
+  @inlinable public static func onWillSet(id: any Swift.Hashable = ObjectIdentifier(Self.self), perform operation: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			operation($0, $1)
+			$0 = $1
+		}
+	}
+  @inlinable public static func onDidSet(id: any Swift.Hashable = ObjectIdentifier(Self.self), perform operation: @escaping (Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			$0 = $1
+			operation($1)
+		}
+	}
+  @inlinable public static func onDidSet(id: any Swift.Hashable = ObjectIdentifier(Self.self), perform operation: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) {
+			$0 = $1
+			operation($0, $1)
+		}
+	}
+}
+extension KeyPathMapping._MutatingSetters.AnySetter where Root == Member {
+  @inlinable public static func perform(id: any Swift.Hashable = ObjectIdentifier(Self.self), operation: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id) { operation($0, $1) }
+	}
+}
+extension KeyPathMapping._NonMutatingSetters.AnySetter where Root == Member {
+  @inlinable public static func perform(id: any Swift.Hashable = ObjectIdentifier(Self.self), operation: @escaping (Root, Member) -> Swift.Void) -> KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member> {
+		return .inline(id: id, embed: operation)
+	}
+}
+extension KeyPathMapping._Getters {
+  public struct Inline<Root, Member> : KeyPathMapping._Getters.Getter {
+    @inlinable public static func == (lhs: KeyPathMapping._Getters.Inline<Root, Member>, rhs: KeyPathMapping._Getters.Inline<Root, Member>) -> Swift.Bool {
+			lhs.id._swift_keypath_mapper_isEqual(to: rhs.id)
+		}
+    @usableFromInline
+    internal let id: any Swift.Hashable
+    @usableFromInline
+    internal let _extract: (Root) -> Member
+    public init(id: any Swift.Hashable = ObjectIdentifier(Self.self), extract: @escaping (Root) -> Member)
+    @inlinable public func extract(from root: Root) -> Member {
+			self._extract(root)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			id.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingSetters {
+  public struct Inline<Root, Member> : KeyPathMapping._MutatingSetters.Setter {
+    @inlinable public static func == (lhs: KeyPathMapping._MutatingSetters.Inline<Root, Member>, rhs: KeyPathMapping._MutatingSetters.Inline<Root, Member>) -> Swift.Bool {
+			lhs.id._swift_keypath_mapper_isEqual(to: rhs.id)
+		}
+    @usableFromInline
+    internal let id: any Swift.Hashable
+    @usableFromInline
+    internal let _embed: (inout Root, Member) -> Swift.Void
+    public init(id: any Swift.Hashable = ObjectIdentifier(Self.self), embed: @escaping (inout Root, Member) -> Swift.Void)
+    @inlinable public func embed(_ member: Member, in root: inout Root) {
+			self._embed(&root, member)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			id.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingSetters {
+  public struct Inline<Root, Member> : KeyPathMapping._NonMutatingSetters.Setter {
+    @inlinable public static func == (lhs: KeyPathMapping._NonMutatingSetters.Inline<Root, Member>, rhs: KeyPathMapping._NonMutatingSetters.Inline<Root, Member>) -> Swift.Bool {
+			lhs.id._swift_keypath_mapper_isEqual(to: rhs.id)
+		}
+    @usableFromInline
+    internal let id: any Swift.Hashable
+    @usableFromInline
+    internal let _embed: (Root, Member) -> Swift.Void
+    public init(id: any Swift.Hashable = ObjectIdentifier(Self.self), embed: @escaping (Root, Member) -> Swift.Void)
+    @inlinable public func embed(_ member: Member, in root: Root) {
+			self._embed(root, member)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			id.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._Getters {
+  public struct Never<Root, Member> : KeyPathMapping._Getters.Getter {
+    public static func == (lhs: KeyPathMapping._Getters.Never<Root, Member>, rhs: KeyPathMapping._Getters.Never<Root, Member>) -> Swift.Bool
+    @usableFromInline
+    internal let message: Swift.String?
+    @usableFromInline
+    internal let file: Swift.StaticString
+    @usableFromInline
+    internal let line: Swift.UInt
+    public init(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line)
+    @inlinable public func extract(from root: Root) -> Member {
+			fatalError(
+				message ?? """
+				This getter should've never been called.
+				""",
+				file: file,
+				line: line
+			)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			message.hash(into: &hasher)
+			file.description.hash(into: &hasher)
+			line.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._Getters.AnyGetter {
+  @inlinable public static func never(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line) -> KeyPathMapping._Getters.AnyGetter<Root, Member> {
+		return .init(_Getters.Never(
+			message: message,
+			file: file,
+			line: line
+		))
+	}
+}
+extension KeyPathMapping._MutatingSetters {
+  public struct Never<Root, Member> : KeyPathMapping._MutatingSetters.Setter {
+    public static func == (lhs: KeyPathMapping._MutatingSetters.Never<Root, Member>, rhs: KeyPathMapping._MutatingSetters.Never<Root, Member>) -> Swift.Bool
+    @usableFromInline
+    internal let message: Swift.String?
+    @usableFromInline
+    internal let file: Swift.StaticString
+    @usableFromInline
+    internal let line: Swift.UInt
+    public init(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line)
+    @inlinable public func embed(_ member: Member, in root: inout Root) {
+			fatalError(
+				message ?? """
+				This setter should've never been called.
+				""",
+				file: file,
+				line: line
+			)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			message.hash(into: &hasher)
+			file.description.hash(into: &hasher)
+			line.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._MutatingSetters.AnySetter {
+  @inlinable public static func never(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		return .init(_MutatingSetters.Never(
+			message: message,
+			file: file,
+			line: line
+		))
+	}
+}
+extension KeyPathMapping._NonMutatingSetters {
+  public struct Never<Root, Member> : KeyPathMapping._NonMutatingSetters.Setter {
+    public static func == (lhs: KeyPathMapping._NonMutatingSetters.Never<Root, Member>, rhs: KeyPathMapping._NonMutatingSetters.Never<Root, Member>) -> Swift.Bool
+    @usableFromInline
+    internal let message: Swift.String?
+    @usableFromInline
+    internal let file: Swift.StaticString
+    @usableFromInline
+    internal let line: Swift.UInt
+    public init(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line)
+    @inlinable public func embed(_ member: Member, in root: Root) {
+			fatalError(
+				message ?? """
+				This setter should've never been called.
+				""",
+				file: file,
+				line: line
+			)
+		}
+    @inlinable public func hash(into hasher: inout Swift.Hasher) {
+			message.hash(into: &hasher)
+			file.description.hash(into: &hasher)
+			line.hash(into: &hasher)
+		}
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension KeyPathMapping._NonMutatingSetters.AnySetter {
+  @inlinable public static func never(message: Swift.String? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line) -> KeyPathMapping._NonMutatingSetters.AnySetter<Root, Member> {
+		return .init(_NonMutatingSetters.Never(
+			message: message,
+			file: file,
+			line: line
+		))
+	}
+}
+@available(iOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(macOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(tvOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(watchOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(visionOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+public enum _Getters {
+}
+@available(iOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(macOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(tvOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(watchOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(visionOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+public enum _MutatingSetters {
+}
+@available(iOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(macOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(tvOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(watchOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+@available(visionOS, deprecated: 9999, message: "This namespace is not actually deprecated, but intended for internal use. Deprecation lowers autocomplete priority.")
+public enum _NonMutatingSetters {
+}
+extension KeyPathMapping._Getters {
+  public protocol Getter<Root, Member> : Swift.Hashable {
+    associatedtype Root
+    associatedtype Member
+    func extract(from root: Self.Root) -> Self.Member
+  }
+}
+extension KeyPathMapping._MutatingSetters {
+  public protocol Setter<Root, Member> : Swift.Hashable {
+    associatedtype Root
+    associatedtype Member
+    func embed(_ member: Self.Member, in root: inout Self.Root)
+  }
+}
+extension KeyPathMapping._NonMutatingSetters {
+  public protocol Setter<Root, Member> : Swift.Hashable {
+    associatedtype Root
+    associatedtype Member
+    func embed(_ member: Self.Member, in root: Self.Root)
+  }
+}
+extension KeyPathMapping.KeyPathMappable {
+  @inlinable public subscript<Getter>(_getter getter: Getter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter {
+    get { getter.extract(from: self) }
+  }
+  @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._MutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { getter.extract(from: self) }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<Setter>(_setter setter: Setter) -> Self where Self == Setter.Member, Setter : KeyPathMapping._MutatingSetters.Setter, Setter.Member == Setter.Root {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> Getter.Member where Self == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._NonMutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { getter.extract(from: self) }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+  @inlinable public subscript<Setter>(_setter setter: Setter) -> Self where Self == Setter.Member, Setter : KeyPathMapping._NonMutatingSetters.Setter, Setter.Member == Setter.Root {
+    get { self }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMappable {
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>) -> T {
+    get { getter.extract(from: self) }
+  }
+  @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<Self>.MutatingSetter<Self>) -> Self {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Self>.MutatingSetter<T>) -> T {
+    get { getter.extract(from: self) }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Self>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Self>.NonMutatingSetter<T>) -> T {
+    get { getter.extract(from: self) }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+  @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<Self>.NonMutatingSetter<Self>) -> Self {
+    get { self }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMapper {
+  public typealias GetterProtocol<Member> = KeyPathMapping._Getters.Getter<Value, Member>
+  public typealias MutatingSetterProtocol<Member> = KeyPathMapping._MutatingSetters.Setter<Value, Member>
+  public typealias NonMutatingSetterProtocol<Member> = KeyPathMapping._NonMutatingSetters.Setter<Value, Member>
+}
+extension KeyPathMapping.KeyPathMapper {
+  public typealias Getter<Member> = KeyPathMapping._Getters.AnyGetter<Value, Member>
+  public typealias MutatingSetter<Member> = KeyPathMapping._MutatingSetters.AnySetter<Value, Member>
+  public typealias NonMutatingSetter<Member> = KeyPathMapping._NonMutatingSetters.AnySetter<Value, Member>
+}
+extension KeyPathMapping.KeyPathMapper {
+  @inlinable public subscript<Getter>(_getter getter: Getter) -> KeyPathMapping.KeyPathMapper<Getter.Member> where Value == Getter.Root, Getter : KeyPathMapping._Getters.Getter {
+    get { .init(getter.extract(from: value)) }
+  }
+  @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> KeyPathMapping.KeyPathMapper<Getter.Member> where Value == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._MutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { .init(getter.extract(from: value)) }
+    set { setter.embed(newValue.value, in: &value) }
+  }
+  @inlinable public subscript<Setter>(_setter setter: Setter) -> KeyPathMapping.KeyPathMapper<Value> where Setter : KeyPathMapping._MutatingSetters.Setter, Setter.Member == KeyPathMapping.KeyPathMapper<Value>, Setter.Root == KeyPathMapping.KeyPathMapper<Value> {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<Getter, Setter>(_getter getter: Getter, _setter setter: Setter) -> KeyPathMapping.KeyPathMapper<Getter.Member> where Value == Getter.Root, Getter : KeyPathMapping._Getters.Getter, Setter : KeyPathMapping._NonMutatingSetters.Setter, Getter.Member == Setter.Member, Getter.Root == Setter.Root {
+    get { .init(getter.extract(from: value)) }
+    nonmutating set { setter.embed(newValue.value, in: value) }
+  }
+  @inlinable public subscript<Setter>(_setter setter: Setter) -> KeyPathMapping.KeyPathMapper<Value> where Setter : KeyPathMapping._NonMutatingSetters.Setter, Setter.Member == KeyPathMapping.KeyPathMapper<Value>, Setter.Root == KeyPathMapping.KeyPathMapper<Value> {
+    get { self }
+    set { setter.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMapper {
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Value>.Getter<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(getter.extract(from: value)) }
+  }
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Value>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Value>.MutatingSetter<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(getter.extract(from: value)) }
+    set { setter.embed(newValue.value, in: &value) }
+  }
+  @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<KeyPathMapping.KeyPathMapper<Value>>.MutatingSetter<KeyPathMapping.KeyPathMapper<Value>>) -> KeyPathMapping.KeyPathMapper<Value> {
+    get { self }
+    set { setter.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<T>(getter getter: KeyPathMapping.KeyPathMapper<Value>.Getter<T>, setter setter: KeyPathMapping.KeyPathMapper<Value>.NonMutatingSetter<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(getter.extract(from: value)) }
+    nonmutating set { setter.embed(newValue.value, in: value) }
+  }
+  @inlinable public subscript(setter setter: KeyPathMapping.KeyPathMapper<KeyPathMapping.KeyPathMapper<Value>>.NonMutatingSetter<KeyPathMapping.KeyPathMapper<Value>>) -> KeyPathMapping.KeyPathMapper<Value> {
+    get { self }
+    nonmutating set { setter.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMappable {
+  @inlinable public subscript<Conversion>(_map conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._ReadonlyConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+  }
+  @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._MutatingConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+    set { conversion.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> Conversion.Member where Self == Conversion.Root, Conversion : KeyPathMapping._NonMutatingConversions.ConversionProtocol {
+    get { conversion.extract(from: self) }
+    nonmutating set { conversion.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMappable {
+  @inlinable public subscript<T>(map conversion: KeyPathMapping._ReadonlyConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+  }
+  @inlinable public subscript<T>(convert conversion: KeyPathMapping._MutatingConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+    set { conversion.embed(newValue, in: &self) }
+  }
+  @inlinable public subscript<T>(convert conversion: KeyPathMapping._NonMutatingConversions.AnyConversion<Self, T>) -> T {
+    get { conversion.extract(from: self) }
+    nonmutating set { conversion.embed(newValue, in: self) }
+  }
+}
+extension KeyPathMapping.KeyPathMapper {
+  public typealias ReadonlyConversionProtocol<Member> = KeyPathMapping._ReadonlyConversions.ConversionProtocol<Value, Member>
+  public typealias MutatingConversionProtocol<Member> = KeyPathMapping._MutatingConversions.ConversionProtocol<Value, Member>
+  public typealias NonMutatingConversionProtocol<Member> = KeyPathMapping._NonMutatingConversions.ConversionProtocol<Value, Member>
+}
+extension KeyPathMapping.KeyPathMapper {
+  public typealias ReadonlyConversionTo<Member> = KeyPathMapping._ReadonlyConversions.AnyConversion<Value, Member>
+  public typealias MutatingConversionTo<Member> = KeyPathMapping._MutatingConversions.AnyConversion<Value, Member>
+  public typealias NonMutatingConversionTo<Member> = KeyPathMapping._NonMutatingConversions.AnyConversion<Value, Member>
+}
+extension KeyPathMapping.KeyPathMapper {
+  @inlinable public subscript<Conversion>(_map conversion: Conversion) -> KeyPathMapping.KeyPathMapper<Conversion.Member> where Value == Conversion.Root, Conversion : KeyPathMapping._ReadonlyConversions.ConversionProtocol {
+    get { .init(conversion.extract(from: value)) }
+  }
+  @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> KeyPathMapping.KeyPathMapper<Conversion.Member> where Value == Conversion.Root, Conversion : KeyPathMapping._MutatingConversions.ConversionProtocol {
+    get { .init(conversion.extract(from: value)) }
+    set { conversion.embed(newValue.value, in: &value) }
+  }
+  @inlinable public subscript<Conversion>(_convert conversion: Conversion) -> KeyPathMapping.KeyPathMapper<Conversion.Member> where Value == Conversion.Root, Conversion : KeyPathMapping._NonMutatingConversions.ConversionProtocol {
+    get { .init(conversion.extract(from: value)) }
+    nonmutating set { conversion.embed(newValue.value, in: value) }
+  }
+}
+extension KeyPathMapping.KeyPathMapper {
+  @inlinable public subscript<T>(map conversion: KeyPathMapping.KeyPathMapper<Value>.ReadonlyConversionTo<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(conversion.extract(from: value)) }
+  }
+  @inlinable public subscript<T>(convert conversion: KeyPathMapping.KeyPathMapper<Value>.MutatingConversionTo<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(conversion.extract(from: value)) }
+    set { conversion.embed(newValue.value, in: &value) }
+  }
+  @inlinable public subscript<T>(convert conversion: KeyPathMapping.KeyPathMapper<Value>.NonMutatingConversionTo<T>) -> KeyPathMapping.KeyPathMapper<T> {
+    get { .init(conversion.extract(from: value)) }
+    nonmutating set { conversion.embed(newValue.value, in: value) }
+  }
+}
+extension KeyPathMapping.KeyPathMapper where Value : Swift.Collection {
+  @available(iOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(macOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(tvOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(watchOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(visionOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @inlinable public subscript(unsafeIndex index: Value.Index) -> KeyPathMapping.KeyPathMapper<Value.Element> {
+    get { .init(self.value[index]) }
+  }
+  @available(iOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(macOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(tvOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(watchOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(visionOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @inlinable public subscript(safeIndex index: Value.Index) -> KeyPathMapping.KeyPathMapper<Value.Element?> {
+    get {
+			guard self.value.indices.contains(index)
+			else { return .init(nil) }
+
+			return .init(self.value[index])
+		}
+  }
+}
+extension KeyPathMapping.KeyPathMapper where Value : Swift.MutableCollection {
+  @available(iOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(macOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(tvOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(watchOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(visionOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @inlinable public subscript(unsafeIndex index: Value.Index) -> KeyPathMapping.KeyPathMapper<Value.Element> {
+    get { .init(self.value[index]) }
+    set { self.value[index] = newValue.value }
+  }
+  @available(iOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(macOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(tvOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(watchOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(visionOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @inlinable public subscript(safeIndex index: Value.Index) -> KeyPathMapping.KeyPathMapper<Value.Element?> {
+    get {
+			guard self.value.indices.contains(index)
+			else { return .init(nil) }
+
+			return .init(self.value[index])
+		}
+    set {
+			guard
+				let value = newValue.value,
+				self.value.indices.contains(index)
+			else { return }
+
+			self.value[index] = value
+		}
+  }
+}
+extension KeyPathMapping.KeyPathMapper where Value : SwiftMarkerProtocols._OptionalProtocol {
+  @available(iOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(macOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(tvOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(watchOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  @available(visionOS, deprecated: 9999, message: "This subscript has a conversion equivalent that is preferred for autocomplete via this deprecation.")
+  public subscript(unwrappedWith defaultValue: Value.Wrapped, aggressive aggressive: Swift.Bool = false) -> KeyPathMapping.KeyPathMapper<Value.Wrapped> {
+    get
+    set
+  }
+}
+extension Swift.Equatable {
+  @usableFromInline
+  internal func _swift_keypath_mapper_isEqual(to other: any Swift.Equatable) -> Swift.Bool
+}
+extension Swift.Optional : KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Swift.Optional<Wrapped>, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Swift.Optional<Wrapped>, T>) -> T {
+    get
+    set
+  }
+}
+extension Swift.Result : KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Swift.Result<Success, Failure>, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Swift.Result<Success, Failure>, T>) -> T {
+    get
+    set
+  }
+}
+extension Swift.Array : KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Swift.Array<Element>, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Swift.Array<Element>, T>) -> T {
+    get
+    set
+  }
+}
+extension Swift.Dictionary : KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Swift.Dictionary<Key, Value>, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Swift.Dictionary<Key, Value>, T>) -> T {
+    get
+    set
+  }
+}
+extension Swift.Set : KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Swift.Set<Element>, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Swift.Set<Element>, T>) -> T {
+    get
+    set
+  }
+}
+extension Swift.Equatable {
+  @_disfavoredOverload public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Self, T>) -> T {
+    get
+  }
+  @_disfavoredOverload public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Self, T>) -> T {
+    get
+    set
+  }
+}
+public protocol KeyPathMappable {
+}
+public typealias MappingKeyPath<A, B> = Swift.KeyPath<KeyPathMapping.KeyPathMapper<A>, KeyPathMapping.KeyPathMapper<B>>
+public typealias WritableMappingKeyPath<A, B> = Swift.WritableKeyPath<KeyPathMapping.KeyPathMapper<A>, KeyPathMapping.KeyPathMapper<B>>
+extension KeyPathMapping.KeyPathMappable {
+  public subscript<T>(mapPath keyPath: KeyPathMapping.MappingKeyPath<Self, T>) -> T {
+    get
+  }
+  public subscript<T>(mapPath keyPath: KeyPathMapping.WritableMappingKeyPath<Self, T>) -> T {
+    get
+    set
+  }
+}
+public protocol KeyPathMapperProtocol<Value> {
+  associatedtype Value
+  var value: Self.Value { get set }
+}
+public struct KeyPathMapper<Value> : KeyPathMapping.KeyPathMapperProtocol {
+  public var value: Value
+  @inlinable public init(_ value: Value) {
+		self.value = value
+	}
+  @inlinable public subscript() -> Value {
+    get { value }
+    set { self.value = newValue }
+  }
+  @inlinable public mutating func callAsFunction(_ value: Value) {
+		self.value = value
+	}
+  @inlinable public subscript<T>(map keyPath: Swift.KeyPath<KeyPathMapping.KeyPathMapper<Value>, T>) -> T {
+    get { self[keyPath: keyPath] }
+  }
+  @inlinable public subscript<T>(map keyPath: Swift.WritableKeyPath<KeyPathMapping.KeyPathMapper<Value>, T>) -> T {
+    get { self[keyPath: keyPath] }
+    set { self[keyPath: keyPath] = newValue }
+  }
+}
+extension KeyPathMapping.KeyPathMapper : Swift.Sendable where Value : Swift.Sendable {
+}
+extension KeyPathMapping.KeyPathMapper : Swift.Equatable where Value : Swift.Equatable {
+  @_implements(Swift.Equatable, ==(_:_:)) public static func __derived_struct_equals(_ a: KeyPathMapping.KeyPathMapper<Value>, _ b: KeyPathMapping.KeyPathMapper<Value>) -> Swift.Bool
+}
+extension KeyPathMapping.KeyPathMapper : Swift.Hashable where Value : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root : Swift.BinaryFloatingPoint {
+  public static func to(_ type: Member.Type = Member.self) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member : Swift.BinaryFloatingPoint
+  public static func to(_ type: Member.Type = Member.self) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member : Swift.BinaryInteger
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root : Swift.BinaryInteger {
+  public static func to(_ type: Member.Type = Member.self) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member : Swift.BinaryFloatingPoint
+  public static func to(_ type: Member.Type = Member.self) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member : Swift.BinaryInteger
+}
+extension KeyPathMapping._Getters.AnyGetter where Root : Swift.Collection {
+  public static func unsafeIndex(_ index: Root.Index) -> KeyPathMapping._Getters.AnyGetter<Root, Member> where Member == Root.Element
+  public static func safeIndex(_ index: Root.Index) -> KeyPathMapping._Getters.AnyGetter<Root, Member> where Member == Root.Element?
+}
+extension KeyPathMapping._ReadonlyConversions.AnyConversion where Root : Swift.Collection {
+  @inlinable public static func unsafeIndex(_ index: Root.Index) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> where Member == Root.Element {
+		.init(getter: .unsafeIndex(index))
+	}
+  @inlinable public static func safeIndex(_ index: Root.Index) -> KeyPathMapping._ReadonlyConversions.AnyConversion<Root, Member> where Member == Root.Element? {
+		.init(getter: .safeIndex(index))
+	}
+}
+extension KeyPathMapping._Getters.AnyGetter where Root : Swift.MutableCollection {
+  public static func unsafeIndex(_ index: Root.Index) -> KeyPathMapping._Getters.AnyGetter<Root, Member> where Member == Root.Element
+  public static func safeIndex(_ index: Root.Index) -> KeyPathMapping._Getters.AnyGetter<Root, Member> where Member == Root.Element?
+}
+extension KeyPathMapping._MutatingSetters.AnySetter where Root : Swift.MutableCollection {
+  public static func unsafeIndex(_ index: Root.Index) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> where Member == Root.Element
+  public static func safeIndex(_ index: Root.Index) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> where Member == Root.Element?
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root : Swift.MutableCollection {
+  @inlinable public static func unsafeIndex(_ index: Root.Index) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member == Root.Element {
+		.init(
+			getter: .unsafeIndex(index),
+			setter: .unsafeIndex(index)
+		)
+	}
+  @inlinable public static func safeIndex(_ index: Root.Index) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> where Member == Root.Element? {
+		.init(
+			getter: .safeIndex(index),
+			setter: .safeIndex(index)
+		)
+	}
+}
+extension KeyPathMapping._Getters.AnyGetter where Member == Root? {
+  @inlinable public static var optional: KeyPathMapping._Getters.AnyGetter<Root, Swift.Optional<Root>> {
+    get {
+		.inline { $0 }
+	}
+  }
+}
+extension KeyPathMapping._MutatingSetters.AnySetter where Member == Root? {
+  @inlinable public static var optional: KeyPathMapping._MutatingSetters.AnySetter<Root, Swift.Optional<Root>> {
+    get {
+		.inline { v, t in t.map { v = $0 } }
+	}
+  }
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Member == Root? {
+  @inlinable public static var optional: KeyPathMapping._MutatingConversions.AnyConversion<Root, Swift.Optional<Root>> {
+    get {
+		return .init(
+			getter: .optional,
+			setter: .optional
+		)
+	}
+  }
+}
+extension KeyPathMapping._Getters.AnyGetter where Root : SwiftMarkerProtocols._OptionalProtocol, Member == Root.Wrapped {
+  @inlinable public static func unwrappedWith(_ defaultValue: @autoclosure @escaping () -> Root.Wrapped) -> KeyPathMapping._Getters.AnyGetter<Root, Member> {
+		.inline { $0._optional ?? defaultValue() }
+	}
+}
+extension KeyPathMapping._MutatingSetters.AnySetter where Root : SwiftMarkerProtocols._OptionalProtocol, Member == Root.Wrapped {
+  @inlinable public static func aggressive(_ aggressive: Swift.Bool = true) -> KeyPathMapping._MutatingSetters.AnySetter<Root, Member> {
+		.inline {
+			if aggressive || $0._optional != nil {
+				$0._optional = $1
+			}
+		}
+	}
+}
+extension KeyPathMapping._MutatingConversions.AnyConversion where Root : SwiftMarkerProtocols._OptionalProtocol, Member == Root.Wrapped {
+  @inlinable public static func unwrapped(with defaultValue: @autoclosure @escaping () -> Root.Wrapped, aggressive: Swift.Bool = false) -> KeyPathMapping._MutatingConversions.AnyConversion<Root, Member> {
+		return .init(
+			getter: .unwrappedWith(defaultValue()),
+			setter: .aggressive(aggressive)
+		)
+	}
+}
+extension KeyPathMapping.KeyPathMapper {
+  @inlinable public var optional: KeyPathMapping.KeyPathMapper<Value?> {
+    get { .init(value) }
+    set { newValue.value.map { self.value = $0 } }
+  }
+}
